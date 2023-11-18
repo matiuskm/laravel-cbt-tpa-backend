@@ -16,5 +16,11 @@
                     </i> <span>Users</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link"
+                    href="{{route('question.index')}}"><i class="fa-solid fa-book"></i>
+                    </i> <span>Questions</span>
+                </a>
+            </li>
     </aside>
 </div>
