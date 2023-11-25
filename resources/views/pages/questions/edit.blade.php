@@ -3,7 +3,8 @@
 @section('title', 'Edit Question')
 
 @push('style')
-
+<link rel="stylesheet"
+href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
 @endpush
 
 @section('main')
@@ -57,9 +58,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Question</label>
-              <input type="text" name="question" class="form-control @error('question') is-invalid @enderror"
-                value="{{$question->question}}">
+              <label class="col-form-label">Question</label>
+              <textarea name="question" class="summernote-simple @error('question') is-invalid @enderror">{{$question->question}}</textarea>
               @error('question')
               <div class="invalid-feedback">
                 {{$message}}
@@ -152,4 +152,5 @@
 @endsection
 
 @push('scripts')
+  <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
 @endpush

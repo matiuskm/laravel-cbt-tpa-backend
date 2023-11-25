@@ -14,8 +14,15 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $questions = DB::table('questions')->when($request->keyword, function ($query) use ($request) {
-            return $query->where('question', 'like', "%{$request->keyword}%");
+        // dd($request->all());
+        $questions = DB::table('questions')->when($request->keyword || $request->category, function ($query) use ($request) {
+            if (!empty($request->category) && !empty($request->keyword))
+                return $query->where('question', 'like', "%{$request->keyword}%")
+                            ->Where('category', '=', $request->category);
+            else if (!empty($request->category) && empty($request->keyword))
+                return $query->where('category', '=', $request->category);
+            else if (empty($request->category) && !empty($request->keyword))
+                return $query->where('question', 'like', "%{$request->keyword}%");
         })->paginate(10);
         return view('pages.questions.index', compact('questions'));
     }

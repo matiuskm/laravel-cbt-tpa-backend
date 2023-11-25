@@ -6,13 +6,15 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet"
         href="{{ asset('library/selectric/public/selectric.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('library/select2/dist/css/select2.min.css') }}">
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Bank Soal - Tugas 2 LZCDR</h1>
+                <h1>Question Bank</h1>
                 <div class="section-header-button">
                     <a href="{{route('question.create')}}"
                         class="btn btn-primary">Add New</a>
@@ -43,16 +45,25 @@
                             <div class="card-body">
                                 
                                 <div class="float-right col-lg-4 col-md-4 col-sm-12">
-                                    <form method="GET" action="{{route('question.index')}}">
-                                        <div class="input-group">
-                                            <input type="text"
-                                                class="form-control"
-                                                placeholder="Search" name="keyword">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                  <form method="GET" action="{{route('question.index')}}">
+                                    <div class="form-group">
+                                      <label>Category</label>
+                                      <select class="form-control select2" name="category">
+                                        <option value="">All</option>
+                                        <option value="Logika" {{old('category') == 'Logika' ? 'selected' : ''}}>Logika</option>
+                                        <option value="Numeric" {{old('category') == 'Numeric' ? 'selected' : ''}}>Numeric</option>
+                                        <option value="Verbal" {{old('category') == 'Verbal' ? 'selected' : ''}}>Verbal</option>
+                                      </select>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text"
+                                          class="form-control"
+                                          placeholder="Search" name="keyword" value={{old('keyword')}}>
+                                      <div class="input-group-append">
+                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                      </div>
+                                    </div>
+                                  </form>
                                 </div>
 
                                 <div class="clearfix mb-3"></div>
@@ -60,18 +71,19 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>Question</th>
                                             <th>Category</th>
                                             <th>Option 1</th>
                                             <th>Option 2</th>
                                             <th>Option 3</th>
                                             <th>Option 4</th>
-                                            <th>Created</th>
+                                            
                                         </tr>
+                                        <?php $i = ($questions->perPage() * ($questions->currentPage() - 1)) + 1 ?>
                                         @foreach ($questions as $soal)
                                         <tr>
-                                            <td>{{$soal->id}}</td>
+                                            <td>{{$i++}}</td>
                                             <td>{{Str::limit($soal->question, 40)}}
                                                 <div class="table-links">
                                                     <a href="{{route('question.edit', $soal->id)}}">Edit</a>
@@ -103,8 +115,6 @@
                                             <td>
                                                 {{$soal->answer_4}}
                                             </td>
-                                            <td>{{\Carbon\Carbon::parse($soal->created_at)->diffForHumans()}}</td>
-                                            
                                         </tr>
                                         @endforeach
                                     </table>
@@ -124,6 +134,7 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
+    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/features-users.js') }}"></script>
