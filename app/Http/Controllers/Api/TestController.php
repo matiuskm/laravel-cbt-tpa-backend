@@ -95,15 +95,17 @@ class TestController extends Controller
     // get question list by category
     public function getQuestionsByCategory(Request $request): JsonResponse
     {
-        $test = Test::where('user_id', $request->user()->id)->latest()->first()->get();
-        $testQuestions = TestQuestion::where('test_id', $test[0]->id)->get();
+        $test = Test::where('user_id', $request->user()->id)->latest()->first();
+        $testQuestions = TestQuestion::where('test_id', $test->id)->get();
         $testQuestionId = [];
         foreach ($testQuestions as $testQuestion) {
             array_push($testQuestionId, $testQuestion->question_id);
         }
-
-        $questions = Question::whereIn('id', $testQuestionId)->where('category', $request->category)->get();
-
+        if ($request->category)
+            $questions = Question::whereIn('id', $testQuestionId)->where('category', $request->category)->get();
+        else
+            $questions = Question::whereIn('id', $testQuestionId)->get();
+        
         return response()->json([
             'message' => 'Questions retrieved',
             'test' => $test,
