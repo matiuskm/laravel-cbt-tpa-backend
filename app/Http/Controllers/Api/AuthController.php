@@ -44,6 +44,8 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
+        $user->last_login = \Carbon\Carbon::now();
+        $user->save();
         return response()->json([
             'access_token' => $token,
             'user' => $user,

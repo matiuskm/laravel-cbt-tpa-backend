@@ -22,5 +22,11 @@
                     </i> <span>Questions</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link"
+                    href="{{route('content.index')}}"><i class="fa-solid fa-pencil"></i>
+                    </i> <span>Content</span>
+                </a>
+            </li>
     </aside>
 </div>

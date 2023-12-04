@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\ContentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::post('/create-test', [TestController::class, 'createTest'])->middleware('auth:sanctum');
 Route::get('/get-questions', [TestController::class, 'getQuestionsByCategory'])->middleware('auth:sanctum');
 Route::post('/submit-answer', [TestController::class, 'submitAnswer'])->middleware('auth:sanctum');
+Route::get('/get-about-us', [ContentController::class, 'showAboutUs'])->middleware('auth:sanctum');
