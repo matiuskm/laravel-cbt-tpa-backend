@@ -75,8 +75,8 @@ class ContentController extends Controller
         return redirect()->route('content.index')->with('success', 'Content deleted successfully.');
     }
 
-    public function showAboutUs(): JsonResponse {
-        $content = Content::select('content')->where('section', '=', 'aboutus')->first();
+    public function getContent(Request $request): JsonResponse {
+        $content = Content::select('content')->where('section', '=', $request->section)->first();
         return response()->json([
             'status' => 'success',
             'data' => strip_tags($content['content'])
