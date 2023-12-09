@@ -37,6 +37,16 @@
               @enderror
             </div>
             <div class="form-group">
+              <label>Title</label>
+              <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                value="{{old('title')}}">
+              @error('title')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
               <label>Section</label>
               <input type="text" name="section" class="form-control @error('section') is-invalid @enderror"
                 value="{{old('section')}}">

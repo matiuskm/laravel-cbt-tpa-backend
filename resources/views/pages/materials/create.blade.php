@@ -27,6 +27,16 @@
           <form method="POST" action="{{route('material.store')}}">
             @csrf
             <div class="form-group">
+              <label>Title</label>
+              <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                value="{{old('title')}}">
+              @error('title')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
               <label>Image URL</label>
               <input type="text" name="image_url" class="form-control @error('image_url') is-invalid @enderror"
                 value="{{old('image_url')}}">

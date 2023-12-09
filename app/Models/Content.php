@@ -11,6 +11,7 @@ class Content extends Model
 
     protected $fillable = [
         'section',
+        'title',
         'image_url',
         'content',
     ];

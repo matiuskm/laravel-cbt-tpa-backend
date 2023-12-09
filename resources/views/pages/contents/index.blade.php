@@ -61,6 +61,7 @@
                                     <table class="table-striped table">
                                         <tr>
                                             <th>Image</th>
+                                            <th>Title</th>
                                             <th>Section</th>
                                             <th>Content</th>
                                         </tr>
@@ -72,7 +73,7 @@
                                                     width="35"
                                                     data-toggle="tooltip" title="{{$content->section}}">
                                             </td>
-                                            <td>{{$content->section}}
+                                            <td>{{$content->title}}
                                                 <div class="table-links">
                                                     <a href="{{route('content.edit', $content->id)}}">Edit</a>
                                                     <div class="bullet"></div>
@@ -88,6 +89,8 @@
                                                     </form>
                                                 </div>
                                             </td>
+                                            <td>
+                                                {{$content->section}}
                                             <td>
                                                 {{Str::limit($content->content, 40)}}
                                             </td>

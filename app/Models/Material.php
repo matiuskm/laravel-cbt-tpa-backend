@@ -12,5 +12,6 @@ class Material extends Model
     protected $fillable = [
         'image_url',
         'content',
+        'title',
     ];
 }

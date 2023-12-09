@@ -61,8 +61,8 @@
                                     <table class="table-striped table">
                                         <tr>
                                             <th>Image</th>
-                                            <th>Section</th>
-                                            <th>Material</th>
+                                            <th>Title</th>
+                                            <th>Content</th>
                                         </tr>
                                         @foreach ($materials as $material)
                                         <tr>
@@ -72,8 +72,7 @@
                                                     width="35"
                                                     data-toggle="tooltip" title="{{$material->section}}">
                                             </td>
-                                            <td>
-                                                {{Str::limit($material->content, 40)}}
+                                            <td>{{$material->title}}
                                                 <div class="table-links">
                                                     <a href="{{route('material.edit', $material->id)}}">Edit</a>
                                                     <div class="bullet"></div>
@@ -88,6 +87,9 @@
                                                         @method('DELETE')
                                                     </form>
                                                 </div>
+                                            </td>
+                                            <td>
+                                                {{Str::limit($material->content, 40)}}
                                             </td>
                                         </tr>
                                         @endforeach

@@ -28,6 +28,16 @@
             @csrf
             @method('PUT')
             <div class="form-group">
+              <label>Title</label>
+              <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                value="{{$material->title}}">
+              @error('title')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
               <label>Image URL</label>
               <input type="text" name="image_url" class="form-control @error('image_url') is-invalid @enderror"
                 value="{{$material->image_url}}">

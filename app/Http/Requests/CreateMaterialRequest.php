@@ -23,6 +23,7 @@ class CreateMaterialRequest extends FormRequest
     {
         return [
             'content' => 'required|string',
+            'title' => 'required|string',
         ];
     }
 }

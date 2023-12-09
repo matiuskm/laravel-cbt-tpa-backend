@@ -28,5 +28,11 @@
                     </i> <span>Content</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link"
+                    href="{{route('material.index')}}"><i class="fa-solid fa-gear"></i>
+                    </i> <span>Material</span>
+                </a>
+            </li>
     </aside>
 </div>
