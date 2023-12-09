@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\MaterialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::post('/create-test', [TestController::class, 'createTest'])->middleware('
 Route::get('/get-questions', [TestController::class, 'getQuestionsByCategory'])->middleware('auth:sanctum');
 Route::post('/submit-answer', [TestController::class, 'submitAnswer'])->middleware('auth:sanctum');
 Route::get('/get-content', [ContentController::class, 'getContent'])->middleware('auth:sanctum');
+Route::get('/get-all-materials', [MaterialController::class, 'getMaterials'])->middleware('auth:sanctum');
+Route::get('/get-material', [MaterialController::class, 'getMaterial'])->middleware('auth:sanctum');

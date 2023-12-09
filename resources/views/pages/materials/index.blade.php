@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contents')
+@section('title', 'Materials')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,15 +12,15 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Contents</h1>
+                <h1>Materials</h1>
                 <div class="section-header-button">
-                    <a href="{{route('content.create')}}"
+                    <a href="{{route('material.create')}}"
                         class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="/">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Content</a></div>
-                    <div class="breadcrumb-item">All Contents</div>
+                    <div class="breadcrumb-item"><a href="#">Material</a></div>
+                    <div class="breadcrumb-item">All Materials</div>
                 </div>
             </div>
             <div class="section-body">
@@ -29,21 +29,21 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Contents</h2>
+                <h2 class="section-title">Materials</h2>
                 <p class="section-lead">
-                    You can manage all contents, such as editing, deleting and more.
+                    You can manage all materials, such as editing, deleting and more.
                 </p>
 
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Contents</h4>
+                                <h4>All Materials</h4>
                             </div>
                             <div class="card-body">
                                 
                                 <div class="float-right col-lg-4 col-md-4 col-sm-12">
-                                    <form method="GET" action="{{route('content.index')}}">
+                                    <form method="GET" action="{{route('material.index')}}">
                                         <div class="input-group">
                                             <input type="text"
                                                 class="form-control"
@@ -62,41 +62,39 @@
                                         <tr>
                                             <th>Image</th>
                                             <th>Section</th>
-                                            <th>Content</th>
+                                            <th>Material</th>
                                         </tr>
-                                        @foreach ($contents as $content)
+                                        @foreach ($materials as $material)
                                         <tr>
                                             <td>
                                                 <img alt="image"
-                                                    src="{{$content->image_url}}"
+                                                    src="{{$material->image_url}}"
                                                     width="35"
-                                                    data-toggle="tooltip" title="{{$content->section}}">
+                                                    data-toggle="tooltip" title="{{$material->section}}">
                                             </td>
-                                            <td>{{$content->section}}
+                                            <td>
+                                                {{Str::limit($material->content, 40)}}
                                                 <div class="table-links">
-                                                    <a href="{{route('content.edit', $content->id)}}">Edit</a>
+                                                    <a href="{{route('material.edit', $material->id)}}">Edit</a>
                                                     <div class="bullet"></div>
                                                     <a href="#"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-content-{{$content->id}}').submit()"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-content-{{$material->id}}').submit()"
                                                         class="text-danger">Delete</a>
-                                                    <form action="{{route('content.destroy', $content->id)}}"
+                                                    <form action="{{route('material.destroy', $material->id)}}"
                                                         method="POST"
-                                                        id="delete-content-{{$content->id}}"
+                                                        id="delete-content-{{$material->id}}"
                                                         class="d-none">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td>
-                                                {{Str::limit($content->content, 40)}}
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{$contents->withQueryString()->links()}}
+                                    {{$materials->withQueryString()->links()}}
                                 </div>
                             </div>
                         </div>

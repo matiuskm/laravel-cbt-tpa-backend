@@ -76,10 +76,17 @@ class ContentController extends Controller
     }
 
     public function getContent(Request $request): JsonResponse {
-        $content = Content::select('content')->where('section', '=', $request->section)->first();
-        return response()->json([
-            'status' => 'success',
-            'data' => strip_tags($content['content'])
-        ]);
+        $content = Content::where('section', '=', $request->section)->first();
+        $content['content'] = strip_tags($content['content']);
+        if ($content)
+            return response()->json([
+                'status' => 'success',
+                'data' => $content
+            ]);
+        else 
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Content not found.'
+            ]);
     }
 }

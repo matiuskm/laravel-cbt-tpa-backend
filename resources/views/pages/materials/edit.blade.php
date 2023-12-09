@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Content')
+@section('title', 'Edit Material')
 
 @push('style')
   <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
@@ -10,27 +10,27 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Edit Content</h1>
+      <h1>Edit Material</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="/">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="{{route('content.index')}}">Contents</a></div>
-        <div class="breadcrumb-item">Edit Content</div>
+        <div class="breadcrumb-item"><a href="{{route('material.index')}}">Material</a></div>
+        <div class="breadcrumb-item">Edit Material</div>
       </div>
     </div>
 
     <div class="section-body">
       <div class="card">
         <div class="card-header">
-          <h4>Edit Content</h4>
+          <h4>Edit Material</h4>
         </div>
         <div class="card-body">
-          <form method="POST" action="{{route('content.update', $content->id)}}">
+          <form method="POST" action="{{route('material.update', $material->id)}}">
             @csrf
             @method('PUT')
             <div class="form-group">
               <label>Image URL</label>
               <input type="text" name="image_url" class="form-control @error('image_url') is-invalid @enderror"
-                value="{{$content->image_url}}">
+                value="{{$material->image_url}}">
               @error('image_url')
               <div class="invalid-feedback">
                 {{$message}}
@@ -38,18 +38,8 @@
               @enderror
             </div>
             <div class="form-group">
-              <label>Section</label>
-              <input type="text" name="section" class="form-control @error('section') is-invalid @enderror"
-                value="{{$content->section}}">
-              @error('section')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-              @enderror
-            </div>
-            <div class="form-group">
               <label>Content</label>
-              <textarea name="content" class="summernote-simple @error('content') is-invalid @enderror">{{$content->content}}</textarea>
+              <textarea name="content" class="summernote-simple @error('content') is-invalid @enderror">{{$material->content}}</textarea>
               @error('content')
               <div class="invalid-feedback">
                 {{$message}}
