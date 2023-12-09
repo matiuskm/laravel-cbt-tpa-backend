@@ -89,7 +89,7 @@ class MaterialController extends Controller
         $material = Material::where('id', '=', $request->id)->first();
         $material['content'] = strip_tags($material['content']);
         if ($material)
-            return response()->json(['status' => 'success', 'data' => $material], 200);
+            return response()->json(['status' => 'success', 'data' => [$material]], 200);
         else
             return response()->json(['status' => 'not found'], 404);
     }
