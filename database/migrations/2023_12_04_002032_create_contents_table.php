@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('section');
             $table->text('image_url')->nullable();
             $table->text('content');
             $table->timestamps();
