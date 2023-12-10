@@ -99,7 +99,7 @@ class TestController extends Controller
         if (!$test) {
             return response()->json([
                 'message' => 'Test not found',
-                'test' => null,
+                'test' => [],
                 'questions' => [],
             ], 200);
         }
