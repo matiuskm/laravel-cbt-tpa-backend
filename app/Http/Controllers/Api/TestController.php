@@ -96,6 +96,12 @@ class TestController extends Controller
     public function getQuestionsByCategory(Request $request): JsonResponse
     {
         $test = Test::where('user_id', $request->user()->id)->latest()->first();
+        if (!$test) {
+            return response()->json([
+                'message' => 'Test not found',
+                'data' => [],
+            ], 200);
+        }
         $testQuestions = TestQuestion::where('test_id', $test->id)->get();
         $testQuestionId = [];
         foreach ($testQuestions as $testQuestion) {

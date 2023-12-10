@@ -82,7 +82,7 @@ class MaterialController extends Controller
         if ($materials)
             return response()->json(['status' => 'success', 'data' => $materials], 200);
         else
-            return response()->json(['status' => 'not found'], 404);
+            return response()->json(['status' => 'not found'], 200);
     }
 
     public function getMaterial(Request $request): JsonResponse {
@@ -91,6 +91,6 @@ class MaterialController extends Controller
         if ($material)
             return response()->json(['status' => 'success', 'data' => [$material]], 200);
         else
-            return response()->json(['status' => 'not found'], 404);
+            return response()->json(['status' => 'not found'], 200);
     }
 }

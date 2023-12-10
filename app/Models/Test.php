@@ -14,6 +14,12 @@ class Test extends Model
         'logic_score',
         'numeric_score',
         'verbal_score',
+        'numeric_status',
+        'verbal_status',
+        'logic_status',
+        'numeric_timer',
+        'verbal_timer',
+        'logic_timer',
         'result'
     ];
 }
