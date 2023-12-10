@@ -99,7 +99,8 @@ class TestController extends Controller
         if (!$test) {
             return response()->json([
                 'message' => 'Test not found',
-                'data' => [],
+                'test' => null,
+                'questions' => [],
             ], 200);
         }
         $testQuestions = TestQuestion::where('test_id', $test->id)->get();
